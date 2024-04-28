@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('proyectos', function (Blueprint $table) {
             $table->id()->unique()->primary();
             $table->string('nombre');
-            $table->string('estado');
-            $table->text('descripcion');
+            $table->string('estado')->nullable();
+            $table->text('descripcion')->nullable();
             $table->date('fecha_inicio');
-            $table->date('fecha_final');
-            $table->string('user_id')->nullable(); // Definición de la columna responsable_id
-            $table->foreign('user_id')->references('cedula')->on('users')->OnDelete('set null');
+            $table->date('fecha_final')->nullable();
+            $table->string('lider_id')->nullable(); // Definición de la columna responsable_id
+            $table->foreign('lider_id')->references('cedula')->on('users')->nullOnDelete();
         });
     }
 

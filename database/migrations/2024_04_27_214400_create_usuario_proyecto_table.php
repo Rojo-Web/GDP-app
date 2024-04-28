@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('usuario_proyecto', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('proyecto_id')->nullable()->constrained('proyectos')->cascadeOnUpdate()->nullOnDelete();
-            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId('proyecto_id')->nullable()->constrained('proyectos')->cascadeOnUpdate()->onDelete('cascade');
+            $table->string('user_id')->nullable(); // Definición de la columna responsable_id
+            $table->foreign('user_id')->references('cedula')->on('users')->nullOnDelete(); // Clave foránea responsable_id
         });
     }
 
